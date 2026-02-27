@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SquatAI | Приседания</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="squat-page">
+    <!-- Анимированный фон -->
+    <div class="gradient-bg">
+        <div class="gradient-circle circle-1"></div>
+        <div class="gradient-circle circle-2"></div>
+        <div class="gradient-circle circle-3"></div>
+    </div>
+
+    <!-- Кнопка назад -->
+    <a href="{{ url_for('index') }}" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        <span>На главную</span>
+    </a>
+
+    <div class="squat-container">
+        <!-- Окошко с видео -->
+        <div class="video-card">
+            <div class="video-header">
+                <!-- СТАТУС КАМЕРЫ БУДЕТ МЕНЯТЬСЯ ЧЕРЕЗ JS -->
+                <div class="status-badge" id="camera-status">
+                    <span class="status-dot" id="status-dot"></span>
+                    <span id="status-text">Проверка камеры...</span>
+                </div>
+            </div>
+            
+            <div class="video-wrapper">
+                <img src="{{ url_for('video_feed') }}" alt="Video Feed" id="video-feed">
+                <div class="video-overlay"></div>
+            </div>
+
+            <!-- Два баджа: повторения и форма -->
+            <div class="stats-badges">
+                <!-- Счетчик повторений -->
+                <div class="stats-badge reps-badge">
+                    <div class="stats-icon">
+                        <i class="fas fa-repeat"></i>
+                    </div>
+                    <div class="stats-info">
+                        <span class="stats-label">Повторения</span>
+                        <span class="stats-value" id="reps-count">0</span>
+                    </div>
+                </div>
+
+                <!-- Индикатор формы -->
+                <div class="stats-badge form-badge" id="form-badge">
+                    <div class="stats-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stats-info">
+                        <span class="stats-label">Форма</span>
+                        <span class="stats-value" id="form-status">Ожидание</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Нижняя панель -->
+        <div class="bottom-panel">
+            <!-- Маленькая инструкция -->
+            <div class="instruction-box">
+                <div class="instruction-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Держите спину прямо</span>
+                </div>
+                <div class="instruction-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Колени за носками</span>
+                </div>
+                <div class="instruction-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Опускайтесь до 90°</span>
+                </div>
+            </div>
+
+            <!-- Кнопка сброса -->
+            <button class="reset-button" onclick="resetCounter()">
+                <i class="fas fa-redo-alt"></i>
+                <span>Сбросить счет</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Уведомление -->
+    <div class="notification" id="notification"></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
